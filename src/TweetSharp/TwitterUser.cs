@@ -28,6 +28,7 @@ namespace TweetSharp
         private bool? _defaultProfile;
         private bool _defaultProfileImage;
         private string _description;
+        private string _email;
         //entities
         private int _favouritesCount;
         private bool? _followRequestSent;
@@ -250,6 +251,24 @@ namespace TweetSharp
 
                 _description = value;
                 OnPropertyChanged("Description");
+            }
+        }
+
+#if !Smartphone && !NET20
+        [DataMember]
+#endif
+        public virtual string Email
+        {
+            get { return _email; }
+            set
+            {
+                if (_email == value)
+                {
+                    return;
+                }
+
+                _email = value;
+                OnPropertyChanged("Email");
             }
         }
         
